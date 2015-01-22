@@ -68,6 +68,8 @@ namespace EnvTool
 	    		lvi.SubItems.Add((string)entity.Value);
 	    		lvUserEnv.Items.Add(lvi);
 	        }
+	    	
+	    	this.setAutoComplete();
 		}
 		void LvSysEnvSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -231,6 +233,52 @@ namespace EnvTool
 		{
 			this.lnkbHomePage.Links[0].LinkData = "https://github.com/zhulin3141/EnvTool";  
 		    Process.Start(e.Link.LinkData.ToString());  
+		}
+		
+		void setAutoComplete(){
+			AutoCompleteStringCollection acList = new AutoCompleteStringCollection();
+			acList.AddRange(new string[]{
+			                	"MAVEN_HOME",
+			                	"CATALINA_BASE",
+			                	"CATALINA_HOME",
+			                	"TOMCAT_HOME",
+			                	"JRE_HOME",
+			                	"CLASSPATH",
+			                	"JAVA_HOME",
+			                	"ANT_HOME",
+			                	"JAVA_OPTS",
+			                	
+			                	"ORACLE_SID",
+			                	"ORACLE_HOME",
+			                	"TNS_ADMIN",
+			                	"NLS_LANG",
+			                	"LANG",
+			                	
+			                	"android",
+			                	"ANDROID_HOME",
+			                	"ANDROID_SDK_HOME",
+			                	
+			                	"PYTHONIOENCODING",
+			                	
+			                	"GOPATH",
+			                	"GOROOT",
+			                	
+			                	"NODEPATH",
+			                	
+			                	"QTDIR",
+			                	"QMAKESPEC",
+			                	"QT_INSTALL_PREFIX",
+			                	
+			                	"ERL_HOME",
+			                	
+			                	"NDK_ROOT",
+			                	
+			                	"MINGW",
+			                	"LIBRARY_PATH",
+			                });
+            txbVarName.AutoCompleteCustomSource = acList;
+            txbVarName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            txbVarName.AutoCompleteMode = AutoCompleteMode.Suggest;
 		}
 	}
 }
