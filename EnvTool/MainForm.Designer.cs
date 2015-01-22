@@ -303,6 +303,7 @@ namespace EnvTool
 			this.txbVarName.Name = "txbVarName";
 			this.txbVarName.Size = new System.Drawing.Size(797, 21);
 			this.txbVarName.TabIndex = 0;
+			this.txbVarName.TextChanged += new System.EventHandler(this.TxbVarNameTextChanged);
 			// 
 			// MainForm
 			// 

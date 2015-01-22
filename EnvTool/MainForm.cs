@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EnvTool
@@ -279,6 +280,33 @@ namespace EnvTool
             txbVarName.AutoCompleteCustomSource = acList;
             txbVarName.AutoCompleteSource = AutoCompleteSource.CustomSource;
             txbVarName.AutoCompleteMode = AutoCompleteMode.Suggest;
+		}
+		void TxbVarNameTextChanged(object sender, EventArgs e)
+		{
+			this.refreshCurrState();
+			List<ListViewItem> item;
+			
+			item = new List<ListViewItem>();
+			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(this.envVarTarget))
+	        {
+	    		ListViewItem lvi = new ListViewItem();
+	    		
+	    		lvi.Text = lvi.Name = (string)entity.Key;
+	    		lvi.SubItems.Add((string)entity.Value);
+	    		item.Add(lvi);
+	        }
+			
+			var search = txbVarName.Text;
+			var searchItem = item.Where(m => m.SubItems[0].ToString().Contains(search)).ToList();
+			
+			//没有选中
+			if( this.currListView.SelectedItems.Count == 0 ){
+				this.currListView.Items.Clear();
+				
+				if( searchItem != null ){
+					this.currListView.Items.AddRange(searchItem.ToArray());
+				}
+			}
 		}
 	}
 }
