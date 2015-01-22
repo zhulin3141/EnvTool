@@ -51,24 +51,11 @@ namespace EnvTool
 		}
 		void MainFormLoad(object sender, EventArgs e)
 		{
-			//设置环境变量的列表
-	    	foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Machine))
-	        {
-	    		ListViewItem lvi = new ListViewItem();
-	    		
-	    		lvi.Text = lvi.Name = (string)entity.Key;
-	    		lvi.SubItems.Add((string)entity.Value);
-	    		lvSysEnv.Items.Add(lvi);
-	        }
-	    	
-	    	foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User))
-	        {
-	    		ListViewItem lvi = new ListViewItem();
-	    		
-	    		lvi.Text = lvi.Name = (string)entity.Key;
-	    		lvi.SubItems.Add((string)entity.Value);
-	    		lvUserEnv.Items.Add(lvi);
-	        }
+			this.refreshCurrState();
+			
+			//设置环境变量列表
+			this.bindListViewData(EnvironmentVariableTarget.Machine);
+			this.bindListViewData(EnvironmentVariableTarget.User);
 	    	
 	    	this.setAutoComplete();
 		}
@@ -142,6 +129,25 @@ namespace EnvTool
 				lvi.Text = lvi.Name = txbVarName.Text;
 				lvi.SubItems.Add(txbVal.Text);
 				this.currListView.Items.Add(lvi);
+			}
+		}
+		
+		/// <summary>
+		/// 绑定列表中的数据
+		/// </summary>
+		/// <param name="target">环境变量的类型</param>
+		void bindListViewData(EnvironmentVariableTarget target){
+			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(target)){
+			     ListViewItem lvi = new ListViewItem();
+			     
+	    		 lvi.Text = lvi.Name = (string)entity.Key;
+	    		 lvi.SubItems.Add((string)entity.Value);
+	    		 
+	    		 if( target == EnvironmentVariableTarget.Machine){
+	    		 	lvSysEnv.Items.Add(lvi);
+	    		 }else{
+	    		 	lvUserEnv.Items.Add(lvi);
+	    		 }
 			}
 		}
 		
