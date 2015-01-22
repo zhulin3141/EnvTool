@@ -35,6 +35,8 @@ namespace EnvTool
 		private System.Windows.Forms.LinkLabel lnkbHomePage;
 		private System.Windows.Forms.Label labName;
 		private System.Windows.Forms.Label lblHomePageText;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tsslEnvCount;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -70,6 +72,8 @@ namespace EnvTool
 			this.lnkbHomePage = new System.Windows.Forms.LinkLabel();
 			this.labName = new System.Windows.Forms.Label();
 			this.splcCont = new System.Windows.Forms.SplitContainer();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tsslEnvCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.flpFunc = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnEdit = new System.Windows.Forms.Button();
@@ -84,6 +88,7 @@ namespace EnvTool
 			this.splcCont.Panel1.SuspendLayout();
 			this.splcCont.Panel2.SuspendLayout();
 			this.splcCont.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.flpFunc.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -96,7 +101,7 @@ namespace EnvTool
 			this.tbcCont.Location = new System.Drawing.Point(0, 0);
 			this.tbcCont.Name = "tbcCont";
 			this.tbcCont.SelectedIndex = 0;
-			this.tbcCont.Size = new System.Drawing.Size(797, 283);
+			this.tbcCont.Size = new System.Drawing.Size(797, 312);
 			this.tbcCont.TabIndex = 2;
 			// 
 			// tabpSys
@@ -105,7 +110,7 @@ namespace EnvTool
 			this.tabpSys.Location = new System.Drawing.Point(4, 22);
 			this.tabpSys.Name = "tabpSys";
 			this.tabpSys.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpSys.Size = new System.Drawing.Size(789, 257);
+			this.tabpSys.Size = new System.Drawing.Size(789, 286);
 			this.tabpSys.TabIndex = 0;
 			this.tabpSys.Text = "系统";
 			this.tabpSys.UseVisualStyleBackColor = true;
@@ -119,7 +124,7 @@ namespace EnvTool
 			this.lvSysEnv.FullRowSelect = true;
 			this.lvSysEnv.Location = new System.Drawing.Point(3, 3);
 			this.lvSysEnv.Name = "lvSysEnv";
-			this.lvSysEnv.Size = new System.Drawing.Size(783, 251);
+			this.lvSysEnv.Size = new System.Drawing.Size(783, 280);
 			this.lvSysEnv.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.lvSysEnv.TabIndex = 0;
 			this.lvSysEnv.UseCompatibleStateImageBehavior = false;
@@ -142,7 +147,7 @@ namespace EnvTool
 			this.tabpUser.Location = new System.Drawing.Point(4, 22);
 			this.tabpUser.Name = "tabpUser";
 			this.tabpUser.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpUser.Size = new System.Drawing.Size(789, 257);
+			this.tabpUser.Size = new System.Drawing.Size(789, 286);
 			this.tabpUser.TabIndex = 1;
 			this.tabpUser.Text = "用户";
 			this.tabpUser.UseVisualStyleBackColor = true;
@@ -156,7 +161,7 @@ namespace EnvTool
 			this.lvUserEnv.FullRowSelect = true;
 			this.lvUserEnv.Location = new System.Drawing.Point(3, 3);
 			this.lvUserEnv.Name = "lvUserEnv";
-			this.lvUserEnv.Size = new System.Drawing.Size(783, 251);
+			this.lvUserEnv.Size = new System.Drawing.Size(783, 280);
 			this.lvUserEnv.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.lvUserEnv.TabIndex = 1;
 			this.lvUserEnv.UseCompatibleStateImageBehavior = false;
@@ -182,7 +187,7 @@ namespace EnvTool
 			this.tabpAbout.Location = new System.Drawing.Point(4, 22);
 			this.tabpAbout.Name = "tabpAbout";
 			this.tabpAbout.Padding = new System.Windows.Forms.Padding(3);
-			this.tabpAbout.Size = new System.Drawing.Size(789, 257);
+			this.tabpAbout.Size = new System.Drawing.Size(789, 286);
 			this.tabpAbout.TabIndex = 2;
 			this.tabpAbout.Text = "关于";
 			this.tabpAbout.UseVisualStyleBackColor = true;
@@ -235,19 +240,35 @@ namespace EnvTool
 			// 
 			// splcCont.Panel2
 			// 
+			this.splcCont.Panel2.Controls.Add(this.statusStrip1);
 			this.splcCont.Panel2.Controls.Add(this.flpFunc);
 			this.splcCont.Panel2.Controls.Add(this.txbVal);
 			this.splcCont.Panel2.Controls.Add(this.txbVarName);
-			this.splcCont.Size = new System.Drawing.Size(797, 436);
-			this.splcCont.SplitterDistance = 283;
+			this.splcCont.Size = new System.Drawing.Size(797, 481);
+			this.splcCont.SplitterDistance = 312;
 			this.splcCont.TabIndex = 1;
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.tsslEnvCount});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 143);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(797, 22);
+			this.statusStrip1.TabIndex = 3;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tsslEnvCount
+			// 
+			this.tsslEnvCount.Name = "tsslEnvCount";
+			this.tsslEnvCount.Size = new System.Drawing.Size(44, 17);
+			this.tsslEnvCount.Text = "总共有";
 			// 
 			// flpFunc
 			// 
 			this.flpFunc.Controls.Add(this.btnAdd);
 			this.flpFunc.Controls.Add(this.btnEdit);
 			this.flpFunc.Controls.Add(this.btnDel);
-			this.flpFunc.Dock = System.Windows.Forms.DockStyle.Top;
 			this.flpFunc.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
 			this.flpFunc.Location = new System.Drawing.Point(0, 105);
 			this.flpFunc.Name = "flpFunc";
@@ -309,7 +330,7 @@ namespace EnvTool
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(797, 436);
+			this.ClientSize = new System.Drawing.Size(797, 481);
 			this.Controls.Add(this.splcCont);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -324,6 +345,8 @@ namespace EnvTool
 			this.splcCont.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splcCont)).EndInit();
 			this.splcCont.ResumeLayout(false);
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.flpFunc.ResumeLayout(false);
 			this.ResumeLayout(false);
 

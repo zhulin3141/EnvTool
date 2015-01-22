@@ -58,6 +58,7 @@ namespace EnvTool
 			this.bindListViewData(EnvironmentVariableTarget.User);
 	    	
 	    	this.setAutoComplete();
+	    	this.refreshStateStrip();
 		}
 		void LvSysEnvSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -95,6 +96,8 @@ namespace EnvTool
 				this.currListView.SelectedItems[0].Remove();
 				this.emptyTextValue();
 			}
+			
+			this.refreshStateStrip();
 		}
 		void BtnEditClick(object sender, EventArgs e)
 		{
@@ -130,6 +133,9 @@ namespace EnvTool
 				lvi.SubItems.Add(txbVal.Text);
 				this.currListView.Items.Add(lvi);
 			}
+			
+			this.emptyTextValue();
+			this.refreshStateStrip();
 		}
 		
 		/// <summary>
@@ -313,6 +319,12 @@ namespace EnvTool
 					this.currListView.Items.AddRange(searchItem.ToArray());
 				}
 			}
+		}
+		
+		void refreshStateStrip(){
+			var sysCount = Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Machine).Count;
+			var userCount = Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User).Count;
+			this.tsslEnvCount.Text = String.Format("总共有: 系统{0}个,用户{1}个", sysCount, userCount);
 		}
 	}
 }
