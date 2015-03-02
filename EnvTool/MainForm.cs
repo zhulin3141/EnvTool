@@ -329,5 +329,13 @@ namespace EnvTool
 			var userCount = Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User).Count;
 			this.tsslEnvCount.Text = String.Format("总共有: 系统{0}个,用户{1}个", sysCount, userCount);
 		}
+		void BtnCancelClick(object sender, EventArgs e)
+		{
+			this.emptyTextValue();
+			//取消选中
+			if( this.currListView.SelectedItems.Count > 0 ){
+				this.currListView.Items[this.currListView.SelectedIndices[0]].Selected = false;	
+			}
+		}
 	}
 }

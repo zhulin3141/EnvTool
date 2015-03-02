@@ -37,6 +37,7 @@ namespace EnvTool
 		private System.Windows.Forms.Label lblHomePageText;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel tsslEnvCount;
+		private System.Windows.Forms.Button btnCancel;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -78,6 +79,7 @@ namespace EnvTool
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnEdit = new System.Windows.Forms.Button();
 			this.btnDel = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
 			this.txbVal = new System.Windows.Forms.TextBox();
 			this.txbVarName = new System.Windows.Forms.TextBox();
 			this.tbcCont.SuspendLayout();
@@ -269,6 +271,7 @@ namespace EnvTool
 			this.flpFunc.Controls.Add(this.btnAdd);
 			this.flpFunc.Controls.Add(this.btnEdit);
 			this.flpFunc.Controls.Add(this.btnDel);
+			this.flpFunc.Controls.Add(this.btnCancel);
 			this.flpFunc.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
 			this.flpFunc.Location = new System.Drawing.Point(0, 105);
 			this.flpFunc.Name = "flpFunc";
@@ -307,6 +310,18 @@ namespace EnvTool
 			this.btnDel.Text = "删除";
 			this.btnDel.UseVisualStyleBackColor = true;
 			this.btnDel.Click += new System.EventHandler(this.BtnDelClick);
+			// 
+			// btnCancel
+			// 
+			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnCancel.Location = new System.Drawing.Point(306, 6);
+			this.btnCancel.Margin = new System.Windows.Forms.Padding(60, 3, 3, 3);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(76, 29);
+			this.btnCancel.TabIndex = 2;
+			this.btnCancel.Text = "取消";
+			this.btnCancel.UseVisualStyleBackColor = true;
+			this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
 			// 
 			// txbVal
 			// 
