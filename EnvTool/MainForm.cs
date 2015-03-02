@@ -143,8 +143,10 @@ namespace EnvTool
 		/// </summary>
 		/// <param name="target">环境变量的类型</param>
 		void bindListViewData(EnvironmentVariableTarget target){
+			ListViewItem lvi;
+			
 			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(target)){
-			     ListViewItem lvi = new ListViewItem();
+			     lvi = new ListViewItem();
 			     
 	    		 lvi.Text = lvi.Name = (string)entity.Key;
 	    		 lvi.SubItems.Add((string)entity.Value);
@@ -296,12 +298,13 @@ namespace EnvTool
 		void TxbVarNameTextChanged(object sender, EventArgs e)
 		{
 			this.refreshCurrState();
+			ListViewItem lvi;
 			List<ListViewItem> item;
 			
 			item = new List<ListViewItem>();
 			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(this.envVarTarget))
 	        {
-	    		ListViewItem lvi = new ListViewItem();
+	    		lvi = new ListViewItem();
 	    		
 	    		lvi.Text = lvi.Name = (string)entity.Key;
 	    		lvi.SubItems.Add((string)entity.Value);
