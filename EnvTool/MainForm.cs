@@ -308,8 +308,8 @@ namespace EnvTool
 	    		item.Add(lvi);
 	        }
 			
-			var search = txbVarName.Text;
-			var searchItem = item.Where(m => m.SubItems[0].ToString().Contains(search)).ToList();
+			var search = txbVarName.Text.ToLower();
+			var searchItem = item.Where(m => m.SubItems[0].ToString().ToLower().Contains(search)).ToList();
 			
 			//没有选中
 			if( this.currListView.SelectedItems.Count == 0 ){
