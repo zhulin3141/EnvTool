@@ -63,6 +63,7 @@ namespace EnvTool
 			}
 			
 			sw.WriteLine("");
+			
 			sw.WriteLine("[User]");
 			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User)){
 				sw.WriteLine(String.Format("{0}={1}", entity.Key, entity.Value));
@@ -173,7 +174,7 @@ namespace EnvTool
 			     lvi = new ListViewItem();
 			     
 	    		 lvi.Text = lvi.Name = (string)entity.Key;
-	    		 lvi.SubItems.Add((string)entity.Value);
+	    		 lvi.SubItems.Add( this.getEnvValue(entity) );
 	    		 
 	    		 if( target == EnvironmentVariableTarget.Machine){
 	    		 	lvSysEnv.Items.Add(lvi);
@@ -181,6 +182,15 @@ namespace EnvTool
 	    		 	lvUserEnv.Items.Add(lvi);
 	    		 }
 			}
+		}
+		
+		String getEnvValue(DictionaryEntry entity){
+			if( new string[] { "Path", "TEMP", "TMP" }.Contains( entity.Key.ToString() ) ){
+				entity.Value = entity.Value.ToString()
+					.Replace(Environment.GetEnvironmentVariable("SystemRoot"), "%SystemRoot%")
+					.Replace(Environment.GetEnvironmentVariable("USERPROFILE"), "%USERPROFILE%");
+			}
+			return entity.Value.ToString();
 		}
 		
 		void refreshCurrState(){
@@ -331,7 +341,7 @@ namespace EnvTool
 	    		lvi = new ListViewItem();
 	    		
 	    		lvi.Text = lvi.Name = (string)entity.Key;
-	    		lvi.SubItems.Add((string)entity.Value);
+	    		lvi.SubItems.Add(this.getEnvValue(entity));
 	    		item.Add(lvi);
 	        }
 			
