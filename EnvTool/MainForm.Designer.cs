@@ -105,6 +105,7 @@ namespace EnvTool
 			this.tbcCont.SelectedIndex = 0;
 			this.tbcCont.Size = new System.Drawing.Size(797, 312);
 			this.tbcCont.TabIndex = 2;
+			this.tbcCont.SelectedIndexChanged += new System.EventHandler(this.TbcContSelectedIndexChanged);
 			// 
 			// tabpSys
 			// 

@@ -372,5 +372,9 @@ namespace EnvTool
 				this.currListView.Items[this.currListView.SelectedIndices[0]].Selected = false;	
 			}
 		}
+		void TbcContSelectedIndexChanged(object sender, EventArgs e)
+		{
+			this.BtnCancelClick(sender, e);
+		}
 	}
 }
