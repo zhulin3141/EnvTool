@@ -48,7 +48,31 @@ namespace EnvTool
 			this.currListView = null;
 			this.envVarTarget = EnvironmentVariableTarget.User;
 			this.currListViewItem = null;
+			
+			this.BackEnv();
 		}
+		
+		//备份当前环境
+		void BackEnv(){
+			FileStream fs = new FileStream("BackEnv.ini", FileMode.Create);
+			StreamWriter sw = new StreamWriter(fs);
+			
+			sw.WriteLine("[Machine]");
+			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Machine)){
+				sw.WriteLine(String.Format("{0}={1}", entity.Key, entity.Value));
+			}
+			
+			sw.WriteLine("");
+			sw.WriteLine("[User]");
+			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User)){
+				sw.WriteLine(String.Format("{0}={1}", entity.Key, entity.Value));
+			}
+			
+			sw.Flush();
+			sw.Close();
+			fs.Close();
+		}
+		
 		void MainFormLoad(object sender, EventArgs e)
 		{
 			this.refreshCurrState();
