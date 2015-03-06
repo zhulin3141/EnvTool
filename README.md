@@ -4,7 +4,7 @@
 方便查找，添加，编辑和删除环境变量
 
 ### 二进制文件下载地址
-http://pan.baidu.com/s/1mgutkCS
+http://pan.baidu.com/s/1mgyxd7U
 
 ### 使用说明
 * 新增：单行文本框填写变量名，多行文本框填写值，填好后点击新增
