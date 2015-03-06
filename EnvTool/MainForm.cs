@@ -63,6 +63,7 @@ namespace EnvTool
 			}
 			
 			sw.WriteLine("");
+			
 			sw.WriteLine("[User]");
 			foreach (DictionaryEntry entity in Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User)){
 				sw.WriteLine(String.Format("{0}={1}", entity.Key, entity.Value));
@@ -131,11 +132,12 @@ namespace EnvTool
 				return ;
 			}
 			
-			Environment.SetEnvironmentVariable(txbVarName.Text, txbVal.Text, this.envVarTarget);
+			String envValue = Environment.ExpandEnvironmentVariables(txbVal.Text);
+			Environment.SetEnvironmentVariable(txbVarName.Text, envValue, this.envVarTarget);
 			
 			if( this.existFlag ){
 				//更新ListView中对应的环境变量的值
-				this.currListViewItem.SubItems[1].Text = txbVal.Text;
+				this.currListViewItem.SubItems[1].Text = envValue;
 			}
 		}
 		void BtnAddClick(object sender, EventArgs e)
@@ -173,7 +175,7 @@ namespace EnvTool
 			     lvi = new ListViewItem();
 			     
 	    		 lvi.Text = lvi.Name = (string)entity.Key;
-	    		 lvi.SubItems.Add((string)entity.Value);
+	    		 lvi.SubItems.Add( (string)entity.Value );
 	    		 
 	    		 if( target == EnvironmentVariableTarget.Machine){
 	    		 	lvSysEnv.Items.Add(lvi);
@@ -181,6 +183,15 @@ namespace EnvTool
 	    		 	lvUserEnv.Items.Add(lvi);
 	    		 }
 			}
+		}
+		
+		String getEnvValue(String envName, String envValue){
+			if( new string[] { "Path", "TEMP", "TMP" }.Contains( envName ) ){
+				envValue = envValue
+					.Replace(Environment.GetEnvironmentVariable("SystemRoot"), "%SystemRoot%")
+					.Replace(Environment.GetEnvironmentVariable("USERPROFILE"), "%USERPROFILE%");
+			}
+			return envValue;
 		}
 		
 		void refreshCurrState(){
@@ -208,8 +219,8 @@ namespace EnvTool
 			//激活时在文本框上设置为当前项的值
 			if ( this.currListView.SelectedIndices != null && this.currListView.SelectedIndices.Count > 0 )
 			{
-				txbVarName.Text = this.currListViewItem.SubItems[0].Text;
-				txbVal.Text = this.currListViewItem.SubItems[1].Text;
+				String envName = txbVarName.Text = this.currListViewItem.SubItems[0].Text;
+				txbVal.Text = this.getEnvValue( envName, this.currListViewItem.SubItems[1].Text );
 			}
 		}
 		
